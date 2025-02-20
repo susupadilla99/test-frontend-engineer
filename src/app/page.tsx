@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ProductListing } from "@/components/typeDefinition";
+import Link from "next/link";
 
 export default async function Home() {
 
@@ -9,14 +10,16 @@ export default async function Home() {
 
   function renderProduct(productData: ProductListing) {
     return (
-      <div key={productData.id} className="border-2 border-red-300">
-        <Image src={productData.image} alt={productData.title} width={100} height={100}></Image>
-        <h3 className="font-bold text-lg">{productData.title}</h3>
-        <p>{productData.category}</p>
-        <h4 className="font-bold mt-4">Description:</h4>
-        <p className="text-gray-700 text-sm italic">{productData.description}</p>
-        <p className="mt-4">Price: ${productData.price}</p>
-        <p className="mt-4">Rating: {productData.rating.rate}/5 ({productData.rating.count} reviews)</p>
+      <div key={productData.id} className=" hover:bg-gray-200 active:bg-gray-400">
+        <Link href={"/products/"+productData.id}>
+          <Image src={productData.image} alt={productData.title} width={100} height={100}></Image>
+          <h3 className="font-bold text-lg">{productData.title}</h3>
+          <p>{productData.category}</p>
+          <h4 className="font-bold mt-4">Description:</h4>
+          <p className="text-gray-700 text-sm italic">{productData.description}</p>
+          <p className="mt-4">Price: ${productData.price}</p>
+          <p className="mt-4">Rating: {productData.rating.rate}/5 ({productData.rating.count} reviews)</p>
+        </Link>
       </div>
     )
   }
