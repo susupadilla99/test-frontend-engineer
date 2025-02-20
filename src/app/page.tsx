@@ -1,20 +1,35 @@
 import Image from "next/image";
+import { ProductListing } from "@/components/typeDefinition";
 
 export default async function Home() {
 
-  var data: any | undefined = await fetch('https://fakestoreapi.com/products')
+  var data: ProductListing[] | undefined = await fetch('https://fakestoreapi.com/products')
   .then(res=>res.json())
   .then(json=>data = json)
 
-  console.log(data)
+  function renderProduct(productData: ProductListing) {
+    return (
+      <div key={productData.id} className="border-2 border-red-300">
+        <Image src={productData.image} alt={productData.title} width={100} height={100}></Image>
+        <h3 className="font-bold text-lg">{productData.title}</h3>
+        <p>{productData.category}</p>
+        <h4 className="font-bold mt-4">Description:</h4>
+        <p className="text-gray-700 text-sm italic">{productData.description}</p>
+        <p className="mt-4">Price: ${productData.price}</p>
+        <p className="mt-4">Rating: {productData.rating.rate}/5 ({productData.rating.count} reviews)</p>
+      </div>
+    )
+  }
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <h1>Product Listing Page</h1>
-        <div className="">
+        <h1 className="text-4xl font-bold">Product Listing Page</h1>
+        <div className="grid grid-cols-4 gap-4">
           {
-            data.map((product:any) => (<p>{product.title}</p>))
+            (data === null || data === undefined) ?
+            <p>Loading...</p> :
+            data.map((product:ProductListing) => renderProduct(product))
           }
         </div>
       </main>
