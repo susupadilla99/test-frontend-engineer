@@ -27,6 +27,6 @@ export namespace CartService {
     }
 
     export function removeItem(product: ProductListing) {
-        cartContent = cartContent.filter((item) => item.product.id === product.id)
+        cartContent = cartContent.filter((item) => item.product.id !== product.id)
     }
 }
