@@ -11,4 +11,9 @@ type ProductListing = {
     }
 }
 
-export type { ProductListing };
+type CartItem = {
+    product: ProductListing,
+    quantity: number
+}
+
+export type { ProductListing, CartItem };
