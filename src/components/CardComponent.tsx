@@ -9,6 +9,7 @@ export default function CardComponent({ data }: { data: ProductListing }) {
 
   function handleAddCart() {
     CartService.addItem(data)
+    console.log(CartService.getCart())
   }
 
   return (

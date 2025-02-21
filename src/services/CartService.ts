@@ -4,6 +4,7 @@ import { CartItem, ProductListing } from "@/components/typeDefinition";
 export namespace CartService {
     let cartContent: CartItem[] = [];
 
+
     export function getCart() {
         return cartContent;
     }

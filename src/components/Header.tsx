@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import CartDisplay from "./CartDisplay";
 
 export default function Header() {
+
+
   return (
     <header>
       <nav className="bg-gray-200 dark:bg-gray-800 antialiased">
@@ -59,29 +60,8 @@ export default function Header() {
                   ></path>
                 </svg>
                 <span className="hidden sm:flex">My Cart</span>
-                <svg
-                  className="hidden sm:flex w-4 h-4 text-gray-900 dark:text-white ms-1"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="m19 9-7 7-7-7"
-                  ></path>
-                </svg>
               </button>
-
-              <CartDisplay />
             </div>
-
-
           </div>
         </div>
       </nav>

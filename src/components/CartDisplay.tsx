@@ -2,7 +2,7 @@
 export default function CartDisplay() {
 
     return (
-        <div id="myCartDropdown1" className="z-10 mx-auto max-w-sm space-y-4 overflow-hidden rounded-lg bg-white p-4 antialiased shadow-lg dark:bg-gray-800 block" data-popper-placement="bottom" style={{position:'absolute', inset:'0px auto auto 0px', margin:'0px', translate:'1005px 68px'}}>
+        <div id="myCartDropdown1" className="z-10 mx-auto max-w-sm space-y-4 overflow-hidden rounded-lg bg-white p-4 antialiased shadow-lg dark:bg-gray-800 block" data-popper-placement="bottom" style={{position:'absolute', inset:'0px auto auto 0px', margin:'0px', translate:'1400px 68px'}}>
           <div className="grid grid-cols-2">
             <div>
               <a href="#" className="truncate text-sm font-semibold leading-none text-gray-900 dark:text-white hover:underline">Apple iPhone 15</a>
