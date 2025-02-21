@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import CartDisplay from "./CartDisplay";
 
 export default function Header() {
   return (
@@ -76,7 +77,11 @@ export default function Header() {
                   ></path>
                 </svg>
               </button>
+
+              <CartDisplay />
             </div>
+
+
           </div>
         </div>
       </nav>
