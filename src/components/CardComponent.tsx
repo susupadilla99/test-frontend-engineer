@@ -3,14 +3,8 @@
 import Image from "next/image";
 import { ProductListing } from "./typeDefinition";
 import Link from "next/link";
-import { CartService } from "@/services/CartService";
 
 export default function CardComponent({ data }: { data: ProductListing }) {
-
-  function handleAddCart() {
-    CartService.addItem(data)
-    console.log(CartService.getCart())
-  }
 
   return (
     <div className="rounded-lg flex flex-col border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
@@ -116,7 +110,6 @@ export default function CardComponent({ data }: { data: ProductListing }) {
           <button
             type="button"
             className="inline-flex items-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-            onClick={handleAddCart}
           >
             <svg
               className="-ms-2 me-2 h-5 w-5"
