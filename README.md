@@ -1,6 +1,6 @@
 # Frontend Developer Take-Home Test
 
-## Overview
+## Overview 
 
 Develop a responsive e-commerce web application that allows users to browse products, view product details, and add products to a shopping cart.
 The application should integrate with a backend API to fetch product data.
