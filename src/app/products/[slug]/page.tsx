@@ -1,6 +1,7 @@
 "use client";
 
 import { ProductListing } from "@/components/typeDefinition";
+import { addToCart } from "@/utils/cart/cart";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -18,8 +19,19 @@ export default function ProductDetails() {
       });
   });
 
-  if (data === null || data === undefined) return <div>Loading...</div>;
+  function handleAddToCart() {
+    if(data == null || data == undefined) 
+      alert("Content not yet loaded, please wait a few seconds and try again")
+    else {
+      addToCart(data)
+        .then( (res) => {
+          console.log(res)
+          alert("Item added to cart") 
+        })
+    }
+  }
 
+  if (data === null || data === undefined) return <div>Loading...</div>;
   return (
     <section className="py-8 bg-white md:py-16 dark:bg-gray-900 antialiased">
       <div className="max-w-screen-xl px-4 mx-auto 2xl:px-0">
@@ -130,6 +142,7 @@ export default function ProductDetails() {
                 href="#"
                 title=""
                 className="text-white mt-4 sm:mt-0 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 flex items-center justify-center"
+                onClick={handleAddToCart}
                 role="button"
               >
                 <svg
