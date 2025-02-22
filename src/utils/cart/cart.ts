@@ -38,7 +38,7 @@ export function getCartItems(setData: Dispatch<SetStateAction<CartItem[] | undef
                     .then((prodRes) => {
                         if (prodRes.data !== null) {
 
-                            const tempFullCart: CartItem[] = cartRes.data.map( (v, i) => {
+                            const tempFullCart: CartItem[] = cartRes.data.map((v, i) => {
                                 const tempProd: ProductListing = {
                                     id: prodRes.data[i].id,
                                     title: prodRes.data[i].title,
@@ -58,30 +58,11 @@ export function getCartItems(setData: Dispatch<SetStateAction<CartItem[] | undef
                                 }
 
                                 return tempCart;
-                            } )
-
+                            })
+                            
                             console.log(tempFullCart)
 
                             setData(tempFullCart)
-                            // const tempProd: ProductListing = {
-                            //     id: prodRes.data[0].id,
-                            //     title: prodRes.data[0].title,
-                            //     price: prodRes.data[0].price,
-                            //     description: prodRes.data[0].description,
-                            //     category: prodRes.data[0].category,
-                            //     image: prodRes.data[0].image,
-                            //     rating: {
-                            //         rate: prodRes.data[0].rate,
-                            //         count: prodRes.data[0].count
-                            //     }
-                            // }
-
-                            // const tempCart: CartItem = {
-                            //     product: tempProd,
-                            //     quantity: cartRes.data[0].quantity
-                            // }
-
-                            // setData(tempCart)
                         }
                     })
         })
@@ -146,7 +127,15 @@ function addCartItemToDB(data: ProductListing) {
     })
 }
 
-function updateCartItemDB(id: number, qty: number) {
+export function removeCartItemFromDB(id: number) {
+    return supabase.from('CartItem').delete().eq('id',id)
+}
+
+export function removeProductItemFromDB(id: number) {
+    return supabase.from('Product').delete().eq('id',id)
+}
+
+export function updateCartItemDB(id: number, qty: number) {
     return supabase.from('CartItem')
         .update({ quantity: qty })
         .eq('id', id)
