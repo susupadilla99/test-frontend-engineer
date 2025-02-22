@@ -20,13 +20,13 @@ export default function ProductDetails() {
   });
 
   function handleAddToCart() {
-    if(data == null || data == undefined) 
+    if (data == null || data == undefined)
       alert("Content not yet loaded, please wait a few seconds and try again")
     else {
       addToCart(data)
-        .then( (res) => {
+        .then((res) => {
           console.log(res)
-          alert("Item added to cart") 
+          alert("Item added to cart")
         })
     }
   }

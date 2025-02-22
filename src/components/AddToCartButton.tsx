@@ -8,8 +8,8 @@ export default function AddToCartButton({ data }: { data: ProductListing }) {
     function handleAddToCart() {
         addToCart(data)
             .then((res) => {
-            console.log(res)
-            alert("Item added to cart")
+                console.log(res)
+                alert("Item added to cart")
             })
     }
 
