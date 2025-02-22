@@ -35,7 +35,8 @@ export default function Header() {
 
             {/** Cart Display */}
             <div className="flex items-center lg:space-x-2">
-              <button
+              <Link
+                href="/cart"
                 id="myCartDropdownButton1"
                 data-dropdown-toggle="myCartDropdown1"
                 type="button"
@@ -60,7 +61,7 @@ export default function Header() {
                   ></path>
                 </svg>
                 <span className="hidden sm:flex">My Cart</span>
-              </button>
+              </Link>
             </div>
           </div>
         </div>

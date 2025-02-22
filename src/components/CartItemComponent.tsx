@@ -1,44 +1,18 @@
 'use client'
 
-import { createClient } from "@supabase/supabase-js";
+// import { createClient } from "@supabase/supabase-js";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { CartItem, ProductListing } from "./typeDefinition";
+import { CartItem } from "./typeDefinition";
+import { getCartItemByID } from "@/utils/cart/cart";
 
 export default function CartItemComponent({ id }: { id: number }) {
 
     const [data, setData] = useState<CartItem>();
-    const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
+    // const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
 
     useEffect(() => {
-        supabase.from('CartItem').select().eq('id', id)
-            .then((cartRes) => {
-                if (cartRes.data !== null)
-                    supabase.from('Product').select().eq('id', id)
-                        .then((prodRes) => {
-                            if (prodRes.data !== null) {
-                                const tempProd: ProductListing = {
-                                    id: prodRes.data[0].id,
-                                    title: prodRes.data[0].title,
-                                    price: prodRes.data[0].price,
-                                    description: prodRes.data[0].description,
-                                    category: prodRes.data[0].category,
-                                    image: prodRes.data[0].image,
-                                    rating: {
-                                        rate: prodRes.data[0].rate,
-                                        count: prodRes.data[0].count
-                                    }
-                                }
-
-                                const tempCart: CartItem = {
-                                    product: tempProd,
-                                    quantity: cartRes.data[0].quantity
-                                }
-
-                                setData(tempCart)
-                            }
-                        })
-            })
+        getCartItemByID(id, setData)
     }, [])
 
     if (data == null) {
@@ -77,9 +51,9 @@ export default function CartItemComponent({ id }: { id: number }) {
                                 >
                                     <path
                                         stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
                                         d="M1 1h16"
                                     ></path>
                                 </svg>
@@ -91,6 +65,7 @@ export default function CartItemComponent({ id }: { id: number }) {
                                 className="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white"
                                 placeholder=""
                                 value="0"
+                                readOnly={true}
                                 required={false}
                             />
                             <button
@@ -108,9 +83,9 @@ export default function CartItemComponent({ id }: { id: number }) {
                                 >
                                     <path
                                         stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
                                         d="M9 1v16M1 9h16"
                                     ></path>
                                 </svg>
@@ -153,9 +128,9 @@ export default function CartItemComponent({ id }: { id: number }) {
                                 >
                                     <path
                                         stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
                                         d="M6 18 17.94 6M18 18 6.06 6"
                                     ></path>
                                 </svg>
@@ -201,9 +176,9 @@ export default function CartItemComponent({ id }: { id: number }) {
                             >
                                 <path
                                     stroke="currentColor"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
                                     d="M1 1h16"
                                 ></path>
                             </svg>
@@ -215,6 +190,8 @@ export default function CartItemComponent({ id }: { id: number }) {
                             className="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white"
                             placeholder=""
                             value={data.quantity.toString()}
+                            defaultValue={0}
+                            readOnly={true}
                             required={false}
                         />
                         <button
@@ -232,9 +209,9 @@ export default function CartItemComponent({ id }: { id: number }) {
                             >
                                 <path
                                     stroke="currentColor"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
                                     d="M9 1v16M1 9h16"
                                 ></path>
                             </svg>
@@ -277,9 +254,9 @@ export default function CartItemComponent({ id }: { id: number }) {
                             >
                                 <path
                                     stroke="currentColor"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
                                     d="M6 18 17.94 6M18 18 6.06 6"
                                 ></path>
                             </svg>
