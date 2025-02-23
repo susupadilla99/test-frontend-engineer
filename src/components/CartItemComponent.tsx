@@ -12,7 +12,7 @@ export default function CartItemComponent({ id, setCartContent }: { id: number, 
 
     useEffect(() => {
         getCartItemByID(id, setData)
-    }, [])
+    }, [id])
 
     function handleIncrementQuantity() {
         if (data!=null)

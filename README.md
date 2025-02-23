@@ -130,7 +130,6 @@ cd test-frontend-engineer
 - Checkout Process to complete purchases.
 - SEO Enhancements to improve visibility in search engines.
 - UI improvements to all pages, including:
-    - A Footer element for all pages
     - A better visual cue when cart items are added
     - A more engaging home page
 
