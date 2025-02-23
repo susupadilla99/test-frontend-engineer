@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ProductListing } from "./typeDefinition";
 import Link from "next/link";
 import AddToCartButton from "./AddToCartButton";
+import Rating from "./Rating";
 
 export default function CardComponent({ data }: { data: ProductListing }) {
 
@@ -43,11 +44,12 @@ export default function CardComponent({ data }: { data: ProductListing }) {
 
         {/** Rating */}
         <div className="mt-2 flex items-center gap-2">
+          <Rating rate={data.rating.rate}/>
           <p className="text-sm font-medium text-gray-900 dark:text-white">
             Ratings: {data.rating.rate}
           </p>
           <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-            ({data.rating.count} reviews)
+            ({data.rating.count})
           </p>
         </div>
 
