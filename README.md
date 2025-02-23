@@ -1,35 +1,51 @@
-# Frontend Developer Take-Home Test
+# Submission for Playa3ull Frontend Developer Take-Home Test
+# E-Commerce Web Application
 
-## Overview 
+# Live Demo
+
+This web application has been deployed live via [Vercel](https://vercel.com/). You can access it here:
+
+https://test-frontend-engineer-daniel-le.vercel.app/
+
+## Features 
+
+### Functional Requirements
 
 Develop a responsive e-commerce web application that allows users to browse products, view product details, and add products to a shopping cart.
 The application should integrate with a backend API to fetch product data.
 
-- The goal is a clear demonstration of quality, functionality, and thought process.
-- **Timebox:** The test is designed to be completed in 6 hours or less.
-- **Commit Often:** Show your working process through regular commits.
-- **External dependencies:** Use any external dependencies you see fit, you do not need to implement everything from scratch.
-- **Keep It Minimal:** Use lightweight libraries and avoid adding unnecessary features, or over-engineering the solution.
+- **Product Listing Page:** Displays a list of products with images, names, rating and prices
 
-## Requirements
+- **Product Detail Page:** Shows detailed product information, including an "Add to Cart" button
 
-### Functional
+- **Shopping Cart:**
+    - Allows users to view added products.
+    - Displays total price and quantity.
+    - Enables users to remove items.
 
-1. **Product Listing Page**
-    - Display a list of products with images, names, and prices.
-    - Implement pagination or infinite scrolling.
+- **Responsive Design:** Optimized for desktop, tablet, and mobile devices.
 
-2. **Product Detail Page**
-    - Show detailed information about the selected product.
-    - Include an "Add to Cart" button.
+## Technical Implementation
 
-3. **Shopping Cart**
-    - Allow users to view products added to their cart.
-    - Display the total price and quantity of items.
-    - Enable users to remove items from the cart.
+- **Framework & Libraries:**
+    - Built with Next.js and TypeScript.
+    - Styled using Tailwind CSS for a responsive and modern UI.
+    - UI components designed with the [Flowbite](https://flowbite.com/) design library
 
-4. **Responsive Design**
-    - Ensure the application is usable on desktop, tablet, and mobile devices.
+- **State Management:**
+    - Utilizes React Hooks for managing cart state efficiently.
+
+- **API Integration:**
+    - Fetches product data from [Fake Store API](https://fakestoreapi.com/).
+
+- **Database & Backend:**
+    - Uses Supabase as a PostgreSQL database.
+    - Currently utilized for shopping cart implementation.
+    - Future expansion planned for user accounts and authentication.
+
+- **Code Quality:**
+    - Follows SOLID principles and design patterns.
+    - Code is modular, reusable, and maintainable.
 
 ### Technical
 
@@ -56,79 +72,72 @@ The application should integrate with a backend API to fetch product data.
 - **Testing**
     - Write unit tests for critical components (optional).
 
-## Getting Started
 
-1. **Fork this Repository**
-    - You can start by forking this repository.
+## Installation & Setup
 
-2. **Setup Project**
-    - Initialize a new Next.js project with TypeScript.
-    - Install Tailwind CSS and configure it.
+### Prerequisites
 
-3. **API Endpoint**
-    - Use a mock API for product data such as [Fake Store API](https://fakestoreapi.com/).
+Ensure you have the following installed:
+- Node.js (v16 or later)
+- npm or yarn or pnpm
 
-4. **Development**
-    - Follow the requirements to build the application.
-    - Ensure the application builds and runs without errors.
+### Steps to Run Locally
 
-## Submission Guidelines
+1. Clone the repository:
 
-- **Repository**
-    - Push your code to a **public GitHub repository**.
-    - Ensure the repository has a clear commit history, and commit regularly.
-    - Ensure the repository is a fork of this repository.
+```
+git clone https://github.com/susupadilla99/test-frontend-engineer
+cd test-frontend-engineer
+```
 
-- **README File**
-    - Include instructions on how to run your application.
-    - Describe your thought process and any architectural decisions.
-    - Mention any trade-offs or assumptions made during development.
+2. Install dependencies:
 
-- **Deployment**
-    - (Optional) Deploy your application using services like **Vercel**.
-    - Provide a link to the live application if deployed.
+```npm install``` or ```yarn``` or ```pnpm install```
 
-- **Submission**
-    - Email us the link to your GitHub repository (and live demo if available) at [sam.thompson@playa3ull.games].
+3. Run the development server:
 
-## Evaluation Criteria
+```npm run dev``` or ```yarn run dev``` or ```pnpm run dev```
 
-- **Functionality**
-    - Does the application meet all the functional requirements?
+4. Open http://localhost:3000 in your browser.
 
-- **Code Quality**
-    - Is the code clean, well-organized, and maintainable?
-    - Are SOLID principles and design patterns appropriately applied?
+## Thought Process & Architectural Decisions
 
-- **Technical Skills**
-    - Effective use of React, TypeScript, and Tailwind CSS.
-    - Proper integration with the backend API.
+### UI/UX Considerations
 
-- **User Experience**
-    - Is the UI responsive and user-friendly?
-    - Does the design consider good UX practices?
+- Used Tailwind CSS and Flowbite for a clean and modern design.
+- Ensured the UI is fully responsive and mobile-friendly.
+- Implemented smooth transitions and animations for better user experience.
 
-- **Problem-Solving**
-    - How were challenges addressed?
-    - Were creative solutions implemented?
+### API Handling
 
-- **Documentation**
-    - Clarity of the README file.
-    - Use of comments and documentation within the code.
+- Used the Fake Store API to simulate a real e-commerce backend.
 
-## Extra Credit
+### Database & Backend
 
-*These are not required but can showcase your additional skills:*
+- Supabase was chosen as a backend to store shopping cart data.
+- Plans to extend it for user authentication and account management.
+- Plans to utilize Supabase GraphQL as well but skipped due to time constraint
 
-- **GraphQL or tRPC**
-    - Use GraphQL or tRPC instead of REST for API interactions.
+### Trade-offs & Assumptions
 
-- **Monorepo Setup**
-    - Organize your project using a monorepo approach.
+- Chose pagination over infinite scrolling for better performance.
+- Did not implement authentication or checkout due to time constraints but will expand upon this in future iterations.
 
-- **SEO Enhancements**
-    - Implement SEO optimisation.
+### Future Enhancements
 
-- **E-commerce Features**
-    - Add user authentication.
-    - Implement a checkout process.
+- GraphQL for better API interactions.
+- Authentication for user accounts and order tracking using Supabase.
+- Checkout Process to complete purchases.
+- SEO Enhancements to improve visibility in search engines.
+- UI improvements to all pages, including:
+    - A Footer element for all pages
+    - A better visual cue when cart items are added
+    - 
+
+## Author
+
+Daniel Le
+
+## License
+
+This project is open-source and available under the MIT License.
