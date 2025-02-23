@@ -1,5 +1,6 @@
 import { ProductListing } from "@/components/typeDefinition";
 import CardComponent from "@/components/CardComponent";
+import Hero from "@/components/Hero";
 
 export default async function Home() {
   // eslint-disable-next-line no-var
@@ -9,21 +10,23 @@ export default async function Home() {
 
   if (data === null || data === undefined) return (<div>Loading...</div>)
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <h1 className="text-4xl font-bold">Product Listing Page</h1>
+    <div>
+      <Hero />
 
-        <section className="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-12">
-          <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
-            <div className="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
-              {data.map((prod) => (
-                <CardComponent key={prod.id} data={prod} />
-              ))}
-            </div>
+      <section className="bg-gray-50 py-4 antialiased dark:bg-gray-900 md:py-8">
+        <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
+          {/** Title */}
+          <div className="mb-4 items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8">
+            <h1 className="text-4xl font-bold">Product Listing Page</h1>
           </div>
-        </section>
-
-      </main>
+          {/** Products */}
+          <div className="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
+            {data.map((prod) => (
+              <CardComponent key={prod.id} data={prod} />
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
