@@ -132,7 +132,7 @@ cd test-frontend-engineer
 - UI improvements to all pages, including:
     - A Footer element for all pages
     - A better visual cue when cart items are added
-    - 
+    - A more engaging home page
 
 ## Author
 
