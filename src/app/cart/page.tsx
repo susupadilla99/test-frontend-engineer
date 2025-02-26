@@ -61,7 +61,7 @@ export default function Cart() {
                             <div className="space-y-4">
                                 <div className="space-y-2">
                                     <dl className="flex items-center justify-between gap-4">
-                                        <dt className="text-base font-normal text-gray-500 dark:text-gray-400">Original price</dt>
+                                        <dt className="text-base font-normal text-gray-500 dark:text-gray-400">Price</dt>
                                         <dd className="text-base font-medium text-gray-900 dark:text-white">{totalPrice().toLocaleString('en-US',{style:'currency',currency:'USD'})}</dd>
                                     </dl>
 

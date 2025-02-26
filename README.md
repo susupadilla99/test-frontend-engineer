@@ -32,7 +32,8 @@ The application should integrate with a backend API to fetch product data.
     - UI components designed with the [Flowbite](https://flowbite.com/) design library
 
 - **State Management:**
-    - Utilizes React Hooks for managing cart state efficiently.
+    - Utilizes Redux to manage global application states
+    - Particularly utilized to manage cart states efficiently
 
 - **API Integration:**
     - Fetches product data from [Fake Store API](https://fakestoreapi.com/).
@@ -53,7 +54,8 @@ The application should integrate with a backend API to fetch product data.
     - Style components using **Tailwind CSS**.
 
 - **State Management**
-    - Manage application state efficiently.
+    - Redux was chosen for simplicity and scalability in managing the application state.
+    - Keeping state management light and scalable aligns with the project requirement.
 
 - **TypeScript**
     - Use TypeScript for type-checking and code quality.
@@ -129,6 +131,7 @@ cd test-frontend-engineer
 - Checkout Process to complete purchases.
 - SEO Enhancements to improve visibility in search engines.
 - UI improvements to all pages, including:
+    - ~~A Footer element for all pages~~ (Completed)
     - A better visual cue when cart items are added
     - A more engaging home page
 
