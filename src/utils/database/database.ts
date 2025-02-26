@@ -1,6 +1,5 @@
 import { CartItem, ProductListing } from "@/components/typeDefinition";
 import { createClient } from "@supabase/supabase-js";
-import { Dispatch, SetStateAction } from "react";
 
 const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
 
@@ -66,38 +65,6 @@ export function getCartItems(): PromiseLike<CartItem[] | undefined> {
                             })
 
                             return tempFullCart
-                        }
-                    })
-        })
-}
-
-export function getCartItemByID(id: number, setData: Dispatch<SetStateAction<CartItem | undefined>>) {
-    return supabase.from('CartItem').select().eq('id', id)
-        .then((cartRes) => {
-            if (cartRes.data !== null)
-                supabase.from('Product').select().eq('id', id)
-                    .then((prodRes) => {
-                        if (prodRes.data !== null) {
-                            const tempProd: ProductListing = {
-                                id: prodRes.data[0].id,
-                                title: prodRes.data[0].title,
-                                price: prodRes.data[0].price,
-                                description: prodRes.data[0].description,
-                                category: prodRes.data[0].category,
-                                image: prodRes.data[0].image,
-                                rating: {
-                                    rate: prodRes.data[0].rate,
-                                    count: prodRes.data[0].count
-                                }
-                            }
-
-                            const tempCart: CartItem = {
-                                product: tempProd,
-                                created_at: cartRes.data[0].created_at,
-                                quantity: cartRes.data[0].quantity
-                            }
-
-                            setData(tempCart)
                         }
                     })
         })
