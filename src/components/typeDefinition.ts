@@ -17,4 +17,10 @@ type CartItem = {
     quantity: number
 }
 
-export type { ProductListing, CartItem };
+type CartState = {
+    cart: {
+        content: CartItem[]
+    } 
+}
+
+export type { ProductListing, CartItem, CartState };

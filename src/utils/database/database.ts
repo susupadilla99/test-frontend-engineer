@@ -65,9 +65,6 @@ export function getCartItems(): PromiseLike<CartItem[] | undefined> {
                                 return tempCart;
                             })
 
-                            // tempFullCart.sort((a, b) => a.created_at > b.created_at ? 1 : -1)
-                            // console.log(tempFullCart)
-                            // setData(tempFullCart)
                             return tempFullCart
                         }
                     })
@@ -148,5 +145,5 @@ export function updateCartItemDB(id: number, qty: number) {
     return supabase.from('CartItem')
         .update({ quantity: qty })
         .eq('id', id)
-        .then((res) => console.log(res))
+        .then((res) => res)
 }

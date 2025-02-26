@@ -1,24 +1,14 @@
 'use client'
 
 import CartItemComponent from "@/components/CartItemComponent";
-import { CartItem } from "@/components/typeDefinition";
-import { getCartItems } from "@/utils/cart/cart";
+import { CartItem, CartState } from "@/components/typeDefinition";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function Cart() {
 
-    // const [cartContent, setCartContent] = useState<CartItem[]>();
-
-    // useEffect(() => {
-    //     getCartItems(setCartContent)
-    // }, [])
-
-    const cartContent:CartItem[] = useSelector(state => state.cart.content)
+    const cartContent:CartItem[] = useSelector((state:CartState) => state.cart.content)
     const cartContentDisplay:CartItem[] = cartContent.toSorted((a, b) => a.created_at.getTime() - b.created_at.getTime())
-
-    // console.log("Cart: ",cartContent)
 
     function totalPrice():number {
         if(cartContentDisplay == null) return 0;

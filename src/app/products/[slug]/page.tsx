@@ -2,15 +2,17 @@
 
 import Rating from "@/components/Rating";
 import { ProductListing } from "@/components/typeDefinition";
-import { addToCart } from "@/utils/cart/cart";
+import { add } from "@/utils/redux/slices/cartSlice";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
 export default function ProductDetails() {
   const path = usePathname();
   const [data, setData] = useState<ProductListing | undefined>(undefined);
+  const dispatch = useDispatch()
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products/" + path.split("/")[2])
@@ -23,13 +25,8 @@ export default function ProductDetails() {
   function handleAddToCart() {
     if (data == null || data == undefined)
       alert("Content not yet loaded, please wait a few seconds and try again")
-    else {
-      addToCart(data)
-        .then((res) => {
-          console.log(res)
-          alert("Item added to cart")
-        })
-    }
+    else 
+      dispatch(add(data))
   }
 
   if (data === null || data === undefined) return <div>Loading...</div>;

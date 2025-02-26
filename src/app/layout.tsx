@@ -1,12 +1,11 @@
-'use client'
-
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Provider, useSelector } from "react-redux";
-import stores from "@/utils/redux/stores";
+// import { Provider } from "react-redux";
+// import stores from "@/utils/redux/stores";
+import ReduxProvider from "@/utils/redux/reduxProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,10 +17,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// export const metadata: Metadata = {
-//   title: "Fake Store",
-//   description: "Fake Store selling items from Fake Store API",
-// };
+export const metadata: Metadata = {
+  title: "Fake Store",
+  description: "Fake Store selling items from Fake Store API",
+};
 
 export default function RootLayout({
   children,
@@ -30,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Provider store={stores}>
+      <ReduxProvider>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
@@ -42,7 +41,7 @@ export default function RootLayout({
           </div>
           <Footer />
         </body>
-      </Provider>
+      </ReduxProvider>
     </html>
   );
 }

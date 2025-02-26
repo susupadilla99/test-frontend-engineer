@@ -1,7 +1,7 @@
 'use client'
 
 import { CartItem, ProductListing } from "@/components/typeDefinition";
-import { addToCart, getCartItems, removeCartItemFromDB, removeProductItemFromDB, updateCartItemDB } from "@/utils/cart/cart";
+import { addToCart, getCartItems, removeCartItemFromDB, removeProductItemFromDB, updateCartItemDB } from "@/utils/database/database";
 import { createSlice } from "@reduxjs/toolkit";
 
 export const cartSlice = createSlice({
@@ -39,7 +39,6 @@ export const cartSlice = createSlice({
                         created_at: action.payload.created_at,
                         quantity: action.payload.quantity + 1
                     })
-                    // tempCart.sort((a, b) => a.created_at > b.created_at ? 1 : -1)
                     state.content = tempCart
                     console.log("Increment",action.payload)
                     updateCartItemDB(action.payload.product.id, action.payload.quantity + 1)
@@ -63,7 +62,6 @@ export const cartSlice = createSlice({
                             created_at: action.payload.created_at,
                             quantity: action.payload.quantity - 1
                         })
-                        // tempCart.sort((a, b) => a.created_at > b.created_at ? 1 : -1)
                         state.content = tempCart
                         updateCartItemDB(action.payload.product.id, action.payload.quantity-1)
                     }
