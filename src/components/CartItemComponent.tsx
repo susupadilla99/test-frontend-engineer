@@ -1,56 +1,24 @@
 'use client'
 
-// import { createClient } from "@supabase/supabase-js";
 import Image from "next/image";
-import { useEffect } from "react";
-// import { CartItem } from "./typeDefinition";
-// import { getCartItemByID, getCartItems, removeCartItemFromDB, removeProductItemFromDB, updateCartItemDB } from "@/utils/cart/cart";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { decrement, increment, remove } from "@/utils/redux/slices/cartSlice";
 import { CartItem } from "./typeDefinition";
 
 export default function CartItemComponent({ data }: { data: CartItem }) {
 
-    // const [data, setData] = useState<CartItem>();
     const dispatch = useDispatch()
-
-    // const data = useSelector(state => state.cart.content.filter(v => v.product.id == id)[0])
-    // console.log("Data: ", data)
-
-    // useEffect(() => {
-    //     // getCartItemByID(id, setData)
-    // }, [id])
 
     function handleIncrementQuantity() {
         dispatch(increment(data))
-        // if (data!=null)
-        //     updateCartItemDB(data.product.id, data.quantity+1)
-        //         .then(() => {
-        //             getCartItemByID(id, setData)
-        //             getCartItems()
-        //         })
     }
 
     function handleDecrementQuantity() {
         dispatch(decrement(data))
-        // if (data!=null && data.quantity>1)
-        //     updateCartItemDB(data.product.id, data.quantity-1)
-        //         .then(() => {
-        //             // getCartItemByID(id, setData)
-        //             getCartItems()
-        //         })
-        // else if (data!=null && data.quantity == 1)
-        //     handleRemoveCartItem()
     }
 
     function handleRemoveCartItem() {
         dispatch(remove(data.product.id))
-        // removeCartItemFromDB(id)
-        //     .then(() => removeProductItemFromDB(id)
-        //         .then(() => {
-        //             setData(undefined)
-        //             getCartItems()
-        //         }))
     }
 
     if (data == null) {
