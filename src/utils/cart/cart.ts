@@ -30,13 +30,17 @@ export function addToCart(data: ProductListing) {
         })
 }
 
-export function getCartItems(setData: Dispatch<SetStateAction<CartItem[] | undefined>>) {
-    supabase.from('CartItem').select()
+export function getCartItems(): PromiseLike<CartItem[] | undefined> {
+    return supabase.from('CartItem').select()
         .then((cartRes) => {
             if (cartRes.data !== null)
-                supabase.from('Product').select()
+                return supabase.from('Product').select()
                     .then((prodRes) => {
                         if (prodRes.data !== null) {
+
+                            // Ensure cartRes and prodRes are in the same order
+                            cartRes.data.sort((a, b) => a.id - b.id)
+                            prodRes.data.sort((a, b) => a.id - b.id)
 
                             const tempFullCart: CartItem[] = cartRes.data.map((v, i) => {
                                 const tempProd: ProductListing = {
@@ -54,15 +58,17 @@ export function getCartItems(setData: Dispatch<SetStateAction<CartItem[] | undef
 
                                 const tempCart: CartItem = {
                                     product: tempProd,
+                                    created_at: new Date(v.created_at),
                                     quantity: v.quantity
                                 }
 
                                 return tempCart;
                             })
-                            
-                            console.log(tempFullCart)
 
-                            setData(tempFullCart)
+                            // tempFullCart.sort((a, b) => a.created_at > b.created_at ? 1 : -1)
+                            // console.log(tempFullCart)
+                            // setData(tempFullCart)
+                            return tempFullCart
                         }
                     })
         })
@@ -90,6 +96,7 @@ export function getCartItemByID(id: number, setData: Dispatch<SetStateAction<Car
 
                             const tempCart: CartItem = {
                                 product: tempProd,
+                                created_at: cartRes.data[0].created_at,
                                 quantity: cartRes.data[0].quantity
                             }
 
@@ -128,16 +135,18 @@ function addCartItemToDB(data: ProductListing) {
 }
 
 export function removeCartItemFromDB(id: number) {
-    return supabase.from('CartItem').delete().eq('id',id)
+    return supabase.from('CartItem').delete().eq('id', id)
+        .then(res => res)
 }
 
 export function removeProductItemFromDB(id: number) {
-    return supabase.from('Product').delete().eq('id',id)
+    return supabase.from('Product').delete().eq('id', id)
+        .then(res => res) 
 }
 
 export function updateCartItemDB(id: number, qty: number) {
     return supabase.from('CartItem')
         .update({ quantity: qty })
         .eq('id', id)
-        .then((res) => res)
+        .then((res) => console.log(res))
 }

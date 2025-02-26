@@ -2,45 +2,55 @@
 
 // import { createClient } from "@supabase/supabase-js";
 import Image from "next/image";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect } from "react";
+// import { CartItem } from "./typeDefinition";
+// import { getCartItemByID, getCartItems, removeCartItemFromDB, removeProductItemFromDB, updateCartItemDB } from "@/utils/cart/cart";
+import { useDispatch, useSelector } from "react-redux";
+import { decrement, increment, remove } from "@/utils/redux/slices/cartSlice";
 import { CartItem } from "./typeDefinition";
-import { getCartItemByID, getCartItems, removeCartItemFromDB, removeProductItemFromDB, updateCartItemDB } from "@/utils/cart/cart";
 
-export default function CartItemComponent({ id, setCartContent }: { id: number, setCartContent: Dispatch<SetStateAction<CartItem[] | undefined>> }) {
+export default function CartItemComponent({ data }: { data: CartItem }) {
 
-    const [data, setData] = useState<CartItem>();
+    // const [data, setData] = useState<CartItem>();
+    const dispatch = useDispatch()
 
-    useEffect(() => {
-        getCartItemByID(id, setData)
-    }, [id])
+    // const data = useSelector(state => state.cart.content.filter(v => v.product.id == id)[0])
+    // console.log("Data: ", data)
+
+    // useEffect(() => {
+    //     // getCartItemByID(id, setData)
+    // }, [id])
 
     function handleIncrementQuantity() {
-        if (data!=null)
-            updateCartItemDB(data.product.id, data.quantity+1)
-                .then(() => {
-                    getCartItemByID(id, setData)
-                    getCartItems(setCartContent)
-                })
+        dispatch(increment(data))
+        // if (data!=null)
+        //     updateCartItemDB(data.product.id, data.quantity+1)
+        //         .then(() => {
+        //             getCartItemByID(id, setData)
+        //             getCartItems()
+        //         })
     }
 
     function handleDecrementQuantity() {
-        if (data!=null && data.quantity>1)
-            updateCartItemDB(data.product.id, data.quantity-1)
-                .then(() => {
-                    getCartItemByID(id, setData)
-                    getCartItems(setCartContent)
-                })
-        else if (data!=null && data.quantity == 1)
-            handleRemoveCartItem()
+        dispatch(decrement(data))
+        // if (data!=null && data.quantity>1)
+        //     updateCartItemDB(data.product.id, data.quantity-1)
+        //         .then(() => {
+        //             // getCartItemByID(id, setData)
+        //             getCartItems()
+        //         })
+        // else if (data!=null && data.quantity == 1)
+        //     handleRemoveCartItem()
     }
 
     function handleRemoveCartItem() {
-        removeCartItemFromDB(id)
-            .then(() => removeProductItemFromDB(id)
-                .then(() => {
-                    setData(undefined)
-                    getCartItems(setCartContent)
-                }))
+        dispatch(remove(data.product.id))
+        // removeCartItemFromDB(id)
+        //     .then(() => removeProductItemFromDB(id)
+        //         .then(() => {
+        //             setData(undefined)
+        //             getCartItems()
+        //         }))
     }
 
     if (data == null) {

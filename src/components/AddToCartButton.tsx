@@ -1,16 +1,24 @@
 'use client'
 
+import { useDispatch } from "react-redux"
 import { ProductListing } from "./typeDefinition"
-import { addToCart } from "@/utils/cart/cart"
+// import { addToCart } from "@/utils/cart/cart"
+import { add } from "@/utils/redux/slices/cartSlice"
 
 export default function AddToCartButton({ data }: { data: ProductListing }) {
 
+    // const cart = useSelector(state => state.cart.content)
+    const dispatch = useDispatch()
+
     function handleAddToCart() {
-        addToCart(data)
-            .then((res) => {
-                console.log(res)
-                alert("Item added to cart")
-            })
+        dispatch(add(data))
+        // alert("Item added to cart")
+        // console.log(cart)
+        // addToCart(data)
+        //     .then((res) => {
+        //         console.log(res)
+        //         alert("Item added to cart")
+        //     })
     }
 
     return (

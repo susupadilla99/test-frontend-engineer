@@ -5,21 +5,27 @@ import { CartItem } from "@/components/typeDefinition";
 import { getCartItems } from "@/utils/cart/cart";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function Cart() {
 
-    const [cartContent, setCartContent] = useState<CartItem[]>();
+    // const [cartContent, setCartContent] = useState<CartItem[]>();
 
-    useEffect(() => {
-        getCartItems(setCartContent)
-    }, [])
+    // useEffect(() => {
+    //     getCartItems(setCartContent)
+    // }, [])
+
+    const cartContent:CartItem[] = useSelector(state => state.cart.content)
+    const cartContentDisplay:CartItem[] = cartContent.toSorted((a, b) => a.created_at.getTime() - b.created_at.getTime())
+
+    // console.log("Cart: ",cartContent)
 
     function totalPrice():number {
-        if(cartContent == null) return 0;
-        return cartContent.reduce((accum, item) => accum+(item.quantity*item.product.price),0)
+        if(cartContentDisplay == null) return 0;
+        return cartContentDisplay.reduce((accum, item) => accum+(item.quantity*item.product.price),0)
     }
 
-    if (cartContent == null) {
+    if (cartContentDisplay == null) {
         return (
             <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
                 <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
@@ -54,7 +60,7 @@ export default function Cart() {
                     {/** Cart display */}
                     <div className="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
                         <div className="space-y-6">
-                            {cartContent.map((v) => <CartItemComponent key={v.product.id} id={v.product.id} setCartContent={setCartContent}/>)}
+                            {cartContentDisplay.map((v) => <CartItemComponent key={v.product.id} data={v}/>)}
                         </div>
                     </div>
 

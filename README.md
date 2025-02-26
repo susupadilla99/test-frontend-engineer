@@ -1,5 +1,4 @@
-# Submission for Playa3ull Frontend Developer Take-Home Test
-# E-Commerce Web Application
+# Playa3ull Frontend Developer Take-Home Test
 
 # Live Demo
 

@@ -13,6 +13,7 @@ type ProductListing = {
 
 type CartItem = {
     product: ProductListing,
+    created_at: Date,
     quantity: number
 }
 

@@ -1,4 +1,5 @@
 export default function Footer() {
+
     return (
         <footer className="bg-primary-950 antialiased dark:bg-gray-800">
             <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
